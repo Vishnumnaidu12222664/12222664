@@ -1,0 +1,62 @@
+# Project Overview
+This is a fully client-side URL shortener built with React. It allows users to shorten long URLs, create custom shortcodes, and set expiration times for the shortened links. The application handles client-side redirection using React Router, and logs all major user and system events to an external evaluation logging API.
+Everything is managed on the frontend—no backend services are used for shortening or redirection. The state and data persist locally using the browser’s localStorage.
+
+# Tech Stack
+•	Frontend Framework: React 
+•	UI Components: Material UI 
+•	Routing: React Router DOM v6
+•	State Management: React’s useState + localStorage
+
+
+ # Key Components
+# Home.jsx
+•	Central form for users to input:
+o	Long URL
+o	Optional custom shortcode
+o	Optional expiry time
+•	Handles URL shortening, validation, and displaying results
+ Statistics.jsx
+•	Lists all previously shortened URLs
+•	Retrieves and displays data stored in localStorage
+#  RedirectHandler.jsx
+•	Automatically redirects users from a shortcode (e.g., /abc123) to the original long URL
+•	Uses React Router's useParams() hook for route matching
+# logger.js
+•	Utility for structured logging
+•	Sends logs (e.g., URL creation, redirection, errors) to a remote evaluation API
+# validation.js
+•	Custom functions to validate:
+o	Input URLs
+o	Shortcode formatting
+o	Expiry time format and logic
+
+# Data Storage Format
+The application stores shortened URLs in the browser’s localStorage under the shortUrls key.
+Here’s an example of the data structure:
+json
+CopyEdit
+{
+  "shortUrls": [
+    {
+      "longUrl": "https://example.com",
+      "shortcode": "abc123",
+      "shortUrl": "http://localhost:3000/abc123",
+      "expiry": "2025-07-14T11:32:00.000Z"
+    }
+  ]
+}
+# Each entry includes:
+•	The original URL
+•	The shortcode assigned (custom or auto-generated)
+•	The full shortened URL
+•	Expiry timestamp (ISO format)
+
+# Features Summary
+•	 URL shortening with custom shortcode option
+•	 Expiry date/time for links
+•	 Client-side redirection using shortcodes
+•	 Persistent data using localStorage
+•	 Event logging to external evaluation API
+•	 Clean UI using Material UI components only
+
